@@ -187,9 +187,35 @@ class Chessboard:
         apopou=apopou.replace(' ','')
         pros=pros.replace(' ','')
         acol=ord(apopou[0])-ord("a")
+        if apopou[1]<'0' or apopou[1]>'9':
+            print 'Λαθος κινηση'
+            return False
         arow=int(apopou[1])-1
         tcol=ord(pros[0])-ord("a") 
+        if pros[1]<'0' or pros[1]>'9':
+            print 'Λαθος κινηση'
+            return False
         trow=int(pros[1])-1
+        
+        if acol<0 or acol>=8:
+            print 'Λαθος κινηση'
+            return False
+        
+        if arow<0 and acol >=8:
+            print 'Λαθος κινηση'
+            return False
+            
+        if tcol<0 and acol >=8:
+            print 'Λαθος κινηση'
+            return False
+        
+        if trow<0 and acol >=8:
+            print 'Λαθος κινηση'
+            return False
+            
+        if self.board[arow][acol] == ' ':
+            print 'Λαθος κινηση'
+            return False    
         
         if self.board[arow][acol].color=='white' and xroma==1:
             print 'Λαθος κινηση'
