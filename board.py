@@ -179,8 +179,25 @@ class Chessboard:
         self.place(p8)
 
     
+    def save_move(self,apo,pros):
+        fin = open('moves.txt','a')
+        fin.write(apo)
+        fin.write(" ")
+        fin.write(pros)
+        fin.write("\n")
+        fin.close()
+
+    def restore(self):
+		fin = open("moves.txt")
+		for line in fin:
+			a = line.split()
+			self.move(a[0],a[1])
+		
+		fin.close()    	
+
     def place(self, k):
         self.board[k.row-1][k.col-1] = k
+
         
     #def move(self, acol, arow, tcol, trow):
     def move(self, apopou, pros, xroma):

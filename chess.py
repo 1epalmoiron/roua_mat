@@ -6,6 +6,19 @@ from board import Chessboard
 cb = Chessboard()
 cb.prepare()
 
+print "Θες να κάνεις restore? "
+choice = raw_input("(N/O): ").upper()
+while choice not in "NYOΝΟ":
+	choice = raw_input("N/O MONO!!! : ").upper()
+
+if choice in "ΝY":
+
+	cb.restore()
+
+else:
+				#del file 
+	fin = open("moves.txt",'w')
+	fin.close()
 
 paiktis=[]
 
@@ -24,16 +37,21 @@ while True:
     
         olaok = cb.move(apopou,  pros, 0)
         if olaok==True:
+            cb.save_move(apopou,pros)
             break
     
     
     cb.show_board(1)
     
     
-    apopou=raw_input("(μαυρος: "+paiktis[1]+")Δωσε θεση κομματιου:").lower()
-    pros=raw_input("(μαυρος: "+paiktis[1]+")Δωσε που θες να μετακινηθει:").lower()
+    while True:
+        apopou=raw_input("(μαυρος: "+paiktis[1]+")Δωσε θεση κομματιου:").lower()
+        pros=raw_input("(μαυρος: "+paiktis[1]+")Δωσε που θες να μετακινηθει:").lower()
     
-    cb.move(apopou,  pros, 1)
+        olaok = cb.move(apopou,  pros, 1)
+        if olaok==True:
+            cb.save_move(apopou,pros)
+            break
 
 
 
