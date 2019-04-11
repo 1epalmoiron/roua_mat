@@ -203,12 +203,22 @@ class Chessboard:
     def move(self, apopou, pros, xroma):
         apopou=apopou.replace(' ','')
         pros=pros.replace(' ','')
+        
+        if len(apopou)<2:
+            print 'Λαθος κινηση'
+            return False
+
+        if len(pros)<2:
+            print 'Λαθος κινηση'
+            return False
+        
         acol=ord(apopou[0])-ord("a")
         if apopou[1]<'0' or apopou[1]>'9':
             print 'Λαθος κινηση'
             return False
         arow=int(apopou[1])-1
         tcol=ord(pros[0])-ord("a") 
+
         if pros[1]<'0' or pros[1]>'9':
             print 'Λαθος κινηση'
             return False
