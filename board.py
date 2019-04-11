@@ -1,5 +1,6 @@
 #-*- encoding:utf-8 -*-
 from pieces import *
+import pygame
 
 class Chessboard:
     def __init__(self):
@@ -312,3 +313,90 @@ class Chessboard:
     
     def show_board_old(self):
         print self.board
+
+
+    def show_gui(self, screen, done):
+        pawn = pygame.image.load('pychess/pawn.png')
+        queen = pygame.image.load('pychess/queen.png')
+        bishop = pygame.image.load('pychess/bishop.png')
+        knight = pygame.image.load('pychess/knight.png')
+        rook = pygame.image.load('pychess/rook.png')
+        king = pygame.image.load('pychess/king.png')
+
+        wpawn = pygame.image.load('pychess/wpawn.png')
+        wqueen = pygame.image.load('pychess/wqueen.png')
+        wbishop = pygame.image.load('pychess/wbishop.png')
+        wknight = pygame.image.load('pychess/wknight.png')
+        wrook = pygame.image.load('pychess/wrook.png')
+        wking = pygame.image.load('pychess/wking.png')        
+
+        screen.fill((255, 255, 255))
+
+        x = 0
+        y = 0
+        color = (0,0,0)
+        i = 0
+        for y in range(0,640,80):
+                for x in range(0,640,80):
+
+                        if i % 2==0:
+                                color = (0,255,255)
+
+                        else:
+                                color = (0,0,0)
+
+                        pygame.draw.rect(screen, color, pygame.Rect(x, y, 80, 80))
+                        i+=1
+                i+=1
+
+        for line in self.board:
+            for piece in line:
+                if piece==" " or piece=="":
+                    continue
+
+                #print piece.name
+                #print piece.col
+                #print piece.row
+                #print piece.color
+                image = pawn
+                a = (piece.col-1)*80+10
+                b = (piece.row-1)*80+10
+                if piece.color=='black' and piece.name=='pawn':
+                    image=pawn
+                if piece.color=='black' and piece.name=='King':
+                    image=king
+                if piece.color=='black' and piece.name=='Queen':
+                    image=queen
+                if piece.color=='black' and piece.name=='Knight':
+                    image=knight
+                if piece.color=='black' and piece.name=='Bishop':
+                    image=bishop
+                if piece.color=='black' and piece.name=='Rook':
+                    image=rook
+
+
+                if piece.color=='white' and piece.name=='pawn':
+                    image=wpawn
+                if piece.color=='white' and piece.name=='King':
+                    image=wking
+                if piece.color=='white' and piece.name=='Queen':
+                    image=wqueen
+                if piece.color=='white' and piece.name=='Knight':
+                    image=wknight
+                if piece.color=='white' and piece.name=='Bishop':
+                    image=wbishop
+                if piece.color=='white' and piece.name=='Rook':
+                    image=wrook
+
+                
+
+
+
+                screen.blit(image, (a,b))
+
+
+
+
+ 
+        pygame.display.flip()        
+
